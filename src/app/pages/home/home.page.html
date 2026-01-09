@@ -1,1 +1,175 @@
-<p>home works!</p>
+<div class="min-h-screen bg-premium-bg font-sans selection:bg-premium-accent/30 selection:text-white">
+  <!-- Hero Section -->
+  <section class="relative pt-32 pb-24 overflow-hidden min-h-screen flex items-center">
+    <!-- Background Image -->
+    <div class="absolute inset-0 z-0">
+      <img src="light_hero_bg.png" alt="Light Background" class="w-full h-full object-cover opacity-40">
+      <div class="absolute inset-0 bg-gradient-to-b from-premium-bg/20 via-premium-bg/60 to-premium-bg"></div>
+    </div>
+
+    <!-- Animated Shapes (Subtle) -->
+    <div class="absolute top-20 right-[10%] w-72 h-72 bg-premium-accent/10 rounded-full blur-3xl animate-pulse"></div>
+    <div class="absolute bottom-10 left-[5%] w-96 h-96 bg-indigo-100/50 rounded-full blur-3xl animate-pulse delay-1000">
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10 w-full">
+      <div class="max-w-4xl">
+        <div
+          class="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-white border border-premium-border/60 shadow-sm mb-10 animate-fade-in translate-y-[-10px]">
+          <span class="relative flex h-2.5 w-2.5">
+            <span
+              class="animate-ping absolute inline-flex h-full w-full rounded-full bg-premium-accent opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-premium-accent"></span>
+          </span>
+          <span class="text-xs font-black uppercase tracking-[0.2em] text-premium-text-muted">Innovation Logistique
+            2026</span>
+        </div>
+
+        <h1
+          class="text-7xl md:text-9xl font-display font-black text-premium-text tracking-tighter leading-[0.85] mb-10 animate-slide-up">
+          L'Efficacité <br>
+          <span class="text-premium-accent italic">Absolue.</span>
+        </h1>
+
+        <p
+          class="text-2xl text-premium-text-muted leading-relaxed mb-14 animate-slide-up opacity-90 delay-200 max-w-2xl font-medium">
+          SmartLogi réinvente la gestion de vos flux. Une interface limpide pour des opérations complexes.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-6 animate-slide-up delay-300">
+          <a routerLink="/auth/register"
+            class="px-12 py-6 bg-premium-accent hover:bg-premium-accent-hover text-white rounded-2xl text-xl font-black shadow-2xl shadow-premium-accent/25 transition-all duration-500 transform hover:-translate-y-2 text-center tracking-tight">
+            Commencer l'Expérience
+          </a>
+          <a routerLink="/auth/login"
+            class="px-12 py-6 bg-white hover:bg-premium-soft-bg text-premium-text border border-premium-border/80 rounded-2xl text-xl font-black transition-all duration-500 text-center shadow-sm">
+            Découvrir la Plateforme
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="py-40 relative">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+      <div class="flex flex-col md:flex-row justify-between items-end gap-12 mb-32">
+        <div class="max-w-2xl">
+          <h2 class="text-sm font-black text-premium-accent uppercase tracking-[0.4em] mb-6">Excellence Systémique</h2>
+          <p class="text-5xl md:text-6xl font-display font-black text-premium-text tracking-tighter leading-tight">
+            Des outils conçus pour <br> les leaders exigeants.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <!-- Feature 1 -->
+        <div
+          class="group p-12 bg-white border border-premium-border/50 rounded-[3rem] shadow-sm hover:shadow-2xl hover:border-premium-accent/20 transition-all duration-700 transform hover:-translate-y-4">
+          <div
+            class="w-20 h-20 bg-premium-soft-bg rounded-3xl flex items-center justify-center mb-10 group-hover:bg-premium-accent group-hover:text-white transition-all duration-700 shadow-inner rotate-3 group-hover:rotate-12">
+            <svg class="w-10 h-10 text-premium-accent group-hover:text-white transition-colors duration-700" fill="none"
+              stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <h3
+            class="text-3xl font-display font-black text-premium-text mb-6 group-hover:text-premium-accent transition-colors">
+            Vitesse Luminale</h3>
+          <p class="text-premium-text-muted text-lg leading-relaxed font-medium">
+            Synchronisation en temps réel de vos données pour une réactivité sans faille face aux imprévus.
+          </p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div
+          class="group p-12 bg-white border border-premium-border/50 rounded-[3rem] shadow-sm hover:shadow-2xl hover:border-premium-accent/20 transition-all duration-700 transform hover:-translate-y-4">
+          <div
+            class="w-20 h-20 bg-premium-soft-bg rounded-3xl flex items-center justify-center mb-10 group-hover:bg-premium-accent group-hover:text-white transition-all duration-700 shadow-inner -rotate-3 group-hover:-rotate-12">
+            <svg class="w-10 h-10 text-premium-accent group-hover:text-white transition-colors duration-700" fill="none"
+              stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3
+            class="text-3xl font-display font-black text-premium-text mb-6 group-hover:text-premium-accent transition-colors">
+            Précision Suisse</h3>
+          <p class="text-premium-text-muted text-lg leading-relaxed font-medium">
+            Chaque colis, chaque kilomètre, chaque seconde est tracée avec une rigueur mathématique.
+          </p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div
+          class="group p-12 bg-white border border-premium-border/50 rounded-[3rem] shadow-sm hover:shadow-2xl hover:border-premium-accent/20 transition-all duration-700 transform hover:-translate-y-4">
+          <div
+            class="w-20 h-20 bg-premium-soft-bg rounded-3xl flex items-center justify-center mb-10 group-hover:bg-premium-accent group-hover:text-white transition-all duration-700 shadow-inner rotate-6 group-hover:rotate-[20deg]">
+            <svg class="w-10 h-10 text-premium-accent group-hover:text-white transition-colors duration-700" fill="none"
+              stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+          </div>
+          <h3
+            class="text-3xl font-display font-black text-premium-text mb-6 group-hover:text-premium-accent transition-colors">
+            Forteresse Digitale</h3>
+          <p class="text-premium-text-muted text-lg leading-relaxed font-medium">
+            Vos flux d'informations sont protégés par les protocoles de sécurité les plus avancés du marché.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-40 bg-premium-soft-bg relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+      <div
+        class="bg-premium-text p-16 md:p-24 rounded-[4rem] shadow-2xl flex flex-col items-center text-center gap-12 relative overflow-hidden">
+        <div class="absolute inset-0 z-0 opacity-20">
+          <div
+            class="absolute top-0 right-0 w-[500px] h-[500px] bg-premium-accent rounded-full blur-[120px] animate-pulse">
+          </div>
+          <div
+            class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-indigo-500 rounded-full blur-[120px] animate-pulse delay-1000">
+          </div>
+        </div>
+
+        <div class="relative z-10 max-w-3xl">
+          <h2 class="text-5xl md:text-7xl font-display font-black text-white tracking-tighter mb-8 leading-[0.9]">
+            Prenez le contrôle <br> de votre futur.
+          </h2>
+          <p class="text-xl text-white/70 font-medium mb-12">
+            Rejoignez l'élite des entreprises logistiques qui font déjà confiance à SmartLogi.
+          </p>
+          <a routerLink="/auth/register"
+            class="px-16 py-7 bg-premium-accent hover:bg-premium-accent-hover text-white rounded-3xl text-2xl font-black shadow-2xl transition-all duration-500 transform hover:-translate-y-2 inline-block tracking-tight">
+            Créer un Compte Premium
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-32 bg-white border-t border-premium-border/50">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex flex-col md:flex-row justify-between items-center gap-12">
+      <div class="flex items-center gap-4">
+        <div
+          class="w-12 h-12 bg-premium-accent rounded-2xl flex items-center justify-center text-white font-black text-xl shadow-lg shadow-premium-accent/20">
+          S</div>
+        <span class="text-3xl font-display font-black text-premium-text tracking-tighter">SmartLogi</span>
+      </div>
+      <p class="text-premium-text-muted text-lg font-bold">
+        &copy; 2026 SmartLogi Solutions. <span class="text-premium-accent">L'excellence en mouvement.</span>
+      </p>
+      <div class="flex gap-10">
+        <a href="#"
+          class="text-premium-text-muted hover:text-premium-accent transition-colors font-black text-sm uppercase tracking-widest">Privacy</a>
+        <a href="#"
+          class="text-premium-text-muted hover:text-premium-accent transition-colors font-black text-sm uppercase tracking-widest">Legal</a>
+      </div>
+    </div>
+  </footer>
+</div>
