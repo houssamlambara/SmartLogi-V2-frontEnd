@@ -1,68 +1,77 @@
-import { Injectable, signal } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
-import { environment } from '../../../environments/environments';
-import { AuthResponse, LoginRequest, User } from '../models/auth.models';
-import { Router } from '@angular/router';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import {catchError, map, tap, throwError} from 'rxjs';
+import { jwtService } from './jwt.service';
+import { AuthApi } from '../../features/auth/auth.api';
+import { Sender } from '../../features/auth/models/sender.model';
+import { authRequest } from '../../features/auth/models/login/login-request.model';
+import { authResponse } from '../../features/auth/models/login/login-response.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = `${environment.apiUrl}/auth`;
-  private currentUserSubject = new BehaviorSubject<User | null>(null);
-  public currentUser$ = this.currentUserSubject.asObservable();
 
-  // Signal for easier template usage in modern Angular
-  public user = signal<User | null>(null);
+  constructor(
+    private authApi: AuthApi,
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private jwtSer: jwtService
+  ) {}
 
-  constructor(private http: HttpClient, private router: Router) {
-    this.loadUserFromStorage();
+  register(body: Sender) {
+    return this.authApi.register(body);
   }
 
-  private loadUserFromStorage(): void {
-    const token = localStorage.getItem('token');
-    const userStr = localStorage.getItem('user');
-    if (token && userStr) {
-      try {
-        const user = JSON.parse(userStr);
-        this.currentUserSubject.next(user);
-        this.user.set(user);
-      } catch (e) {
-        this.logout();
-      }
-    }
-  }
-
-  login(credentials: LoginRequest): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.apiUrl}/auth/login`, credentials).pipe(
-      tap(response => {
-        localStorage.setItem('token', response.token);
-        localStorage.setItem('user', JSON.stringify(response.user));
-        this.currentUserSubject.next(response.user);
-        this.user.set(response.user);
-      })
-    );
+  login(body: authRequest) {
+    return this.authApi
+      .login(body)
+      .pipe(
+        map((res: any) => {
+          return res.data;
+        }),
+        tap((res: authResponse) => {
+          if (!this.isBrowser()) return;
+          localStorage.setItem('jwtToken', res.token);
+          localStorage.setItem('userRole', res.roleName);
+        }),
+        catchError(err => {
+          return throwError(() => err)
+        })
+      );
   }
 
   logout(): void {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    this.currentUserSubject.next(null);
-    this.user.set(null);
-    this.router.navigate(['/auth/login']);
+    if (!this.isBrowser()) return;
+    localStorage.removeItem('jwtToken');
+    localStorage.removeItem('userRole');
   }
 
   getToken(): string | null {
-    return localStorage.getItem('token');
+    if (!this.isBrowser()) return null;
+    return localStorage.getItem('jwtToken');
   }
 
-  isAuthenticated(): boolean {
-    return !!this.getToken();
+  isLoggedIn(): boolean {
+    const token = this.getToken();
+    if (!token) return false;
+
+    const decoded = this.jwtSer.decodeToken(token);
+    return !!decoded && decoded.exp * 1000 > Date.now();
+  }
+
+  getUserRole(): string | null {
+    if (!this.isBrowser()) return null;
+    return this.jwtSer.getRole();
+  }
+
+  private isBrowser(): boolean {
+    return isPlatformBrowser(this.platformId);
   }
 
   hasRole(role: string): boolean {
-    const user = this.user();
-    return user ? user.role === role : false;
+    if(this.jwtSer.getRole() == role){
+      return true;
+    }
+    return false;
   }
 }
