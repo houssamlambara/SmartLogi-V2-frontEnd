@@ -1,14 +1,18 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { provideRouter, withEnabledBlockingInitialNavigation } from '@angular/router';
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
 
 import { routes } from './app.routes';
-import { apiInterceptor } from './core/interceptors/api.interceptor';
+import { HttpClient, httpResource, provideHttpClient, withFetch } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AUTH_PROVIDERS } from './features/auth/auth.providers';
+import { CORE_PROVIDERS } from './core/core.providers';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideHttpClient(withFetch()),
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes, withEnabledBlockingInitialNavigation()),
-    provideHttpClient(withInterceptors([apiInterceptor]))
-  ]
+    AUTH_PROVIDERS,
+    CORE_PROVIDERS
+  ],
 };

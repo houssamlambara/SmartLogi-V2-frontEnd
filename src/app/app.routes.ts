@@ -1,32 +1,24 @@
 import { Routes } from '@angular/router';
-import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
-    // {
-    //     path: 'dashboard',
-    //     redirectTo: 'dashboard'
-    //     pathMatch: 'full'
-    // },
-    {
-        path: 'auth',
-        loadChildren: () => import('./features/auth/auth.routes').then(m => m.AUTH_ROUTES)
-    },
-    // {
-    //     path: 'dashboard',
-    //     loadChildren: () => import('./features/dashboard/dashboard.routes').then(m => m.DASHBOARD_ROUTES),
-    //     canActivate: [authGuard]
-    // },
-    // {
-    //     path: 'parcels',
-    //     loadChildren: () => import('./features/parcel/parcel.routes').then(m => m.PARCEL_ROUTES),
-    //     canActivate: [authGuard]
-    // },
-    // {
-    //     path: 'tracking',
-    //     loadChildren: () => import('./features/tracking/tracking.routes').then(m => m.TRACKING_ROUTES)
-    // },
-    // {
-    //     path: '**',
-    //     redirectTo: 'dashboard'
-    // }
+  {
+    path: '',
+    loadComponent: () => import("./pages/home/home.page").then(h => h.Home),
+  },
+  {
+    path: 'auth',
+    loadChildren: () => import('./features/auth/auth.routes').then(m => m.AUTH_ROUTES),
+  },
+  {
+    path: 'unauthorized',
+    loadComponent: () => import('./features/auth/pages/unauthorized/unauthorized').then(u => u.Unauthorized),
+  },
+  {
+    path: 'admin',
+    loadChildren: () => import('./features/admin/dashboard.routes').then(m => m.DASHBOARD_ROUTES),
+  },
+  {
+    path: '**',
+    loadComponent: () => import("./pages/not-found/not-found.page").then(n => n.NotFound),
+  },
 ];

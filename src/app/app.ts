@@ -1,12 +1,20 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
+import { NavbarComponent } from './shared/components/navbar/navbar/navbar';
+import { NgxSonnerToaster } from 'ngx-sonner';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.html',
+  standalone: true,
+  imports: [RouterOutlet, NavbarComponent, NgxSonnerToaster],
+  templateUrl: "./app.html",
   styleUrl: './app.css'
 })
+
 export class App {
-  protected readonly title = signal('SMARTLOGI-V2-FRONTEND');
+  constructor(private router: Router) { }
+
+  isAuthPage(): boolean {
+    return this.router.url.startsWith('/auth');
+  }
 }
