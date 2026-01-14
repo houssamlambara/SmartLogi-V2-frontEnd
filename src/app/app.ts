@@ -14,7 +14,7 @@ import { NgxSonnerToaster } from 'ngx-sonner';
 export class App {
   constructor(private router: Router) { }
 
-  hideNavbar(): boolean {
-    return this.router.url.startsWith('/auth') || this.router.url.startsWith('/admin');
+  isAuthPage(): boolean {
+    return this.router.url.startsWith('/auth');
   }
 }
