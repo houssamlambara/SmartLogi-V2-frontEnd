@@ -1,0 +1,78 @@
+<div class="bg-white rounded-xl border border-gray-100 hover:border-gray-200 hover:shadow-md transition-all duration-200 overflow-hidden group">
+  <div class="p-6">
+    <!-- Header -->
+    <div class="flex items-center justify-between mb-4">
+      <span class="text-xs font-medium text-gray-400">#{{colis.id.slice(-8).toUpperCase()}}</span>
+      <span
+        class="px-2.5 py-1 rounded-full text-xs font-medium"
+        [ngClass]="getStatusClass(colis.status)"
+        >{{getStatusLabel(colis.status)}}</span
+      >
+    </div>
+
+    <!-- Description et poids -->
+    <div class="flex justify-between items-start mb-3">
+      <h3 class="text-base font-semibold text-gray-900">{{colis.description}}</h3>
+      <span class="text-sm font-medium text-gray-500 ml-2">{{colis.poids}}kg</span>
+    </div>
+
+    <!-- Itinéraire -->
+    <p class="text-sm text-gray-500 mb-5 flex items-center gap-1.5">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-4 w-4 text-gray-400"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+        />
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+        />
+      </svg>
+      {{colis.city.nom}} → {{colis.vileDistination}}
+    </p>
+
+    <!-- Progress Bar minimaliste -->
+    <div class="mb-5">
+      <div class="flex justify-between text-xs mb-2">
+        <span class="text-gray-500">Progression</span>
+        <span class="font-medium text-gray-900">{{getProgress(colis.status)}}%</span>
+      </div>
+      <div class="h-1.5 w-full bg-gray-100 rounded-full overflow-hidden">
+        <div class="h-full transition-all duration-500 rounded-full bg-gray-900"
+             [style.width.%]="getProgress(colis.status)"></div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+      <div class="text-xs">
+        <p class="text-gray-500">Destinataire</p>
+        <p class="font-medium text-gray-900 mt-0.5">{{colis.receiver.prenom}} {{colis.receiver.nom}}</p>
+      </div>
+      <button
+        routerLink="../colis/{{colis.id}}"
+        class="p-2 text-gray-400 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-all"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>

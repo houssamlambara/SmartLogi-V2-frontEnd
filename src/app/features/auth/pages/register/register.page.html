@@ -1,126 +1,182 @@
-<div class="min-h-screen flex items-center justify-center bg-premium-bg font-sans relative overflow-hidden py-12 px-6">
-  <!-- Background Image with Overlay -->
-  <div class="absolute inset-0 z-0">
-    <img src="light_logistics_bg.png" alt="Logistics Background"
-      class="w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-1000">
-    <div class="absolute inset-0 bg-gradient-to-b from-premium-bg/20 via-premium-bg/80 to-premium-bg"></div>
-  </div>
-
-  <!-- Animated Blobs (Subtle) -->
-  <div class="absolute inset-0 overflow-hidden pointer-events-none">
-    <div
-      class="absolute top-[20%] -right-[10%] w-[40%] h-[40%] bg-premium-accent/5 rounded-full blur-[120px] animate-pulse">
-    </div>
-    <div
-      class="absolute bottom-[20%] -left-[10%] w-[40%] h-[40%] bg-indigo-100/50 rounded-full blur-[120px] animate-pulse"
-      style="animation-delay: 1.5s;"></div>
-  </div>
-
-  <div class="max-w-2xl w-full relative z-10">
-    <!-- Header -->
-    <div class="text-center mb-8">
-      <h2 class="text-5xl font-display font-black text-premium-text tracking-tighter mb-3">Rejoindre l'Élite</h2>
-      <p class="text-premium-text-muted font-bold uppercase tracking-widest text-[10px]">Créez votre accès SmartLogi</p>
+<div class="min-h-screen flex items-center justify-center bg-gray-50 py-16 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-2xl w-full space-y-8">
+    <!-- Header minimaliste -->
+    <div class="text-center">
+      <div class="inline-flex items-center justify-center w-14 h-14 bg-gray-900 rounded-full mb-5">
+        <span class="text-white text-xl font-bold">S</span>
+      </div>
+      <h2 class="text-3xl font-semibold text-gray-900 tracking-tight">Créer un compte</h2>
+      <p class="mt-2 text-gray-500">Rejoignez SmartLogi aujourd'hui</p>
     </div>
 
-    <!-- Form Card -->
-    <div
-      class="bg-white p-8 sm:p-12 rounded-[3rem] border border-premium-border/60 shadow-2xl relative overflow-hidden group">
+    <!-- Form Card minimaliste -->
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
       <!-- Loading Overlay -->
-      <div *ngIf="Loading"
-        class="absolute inset-0 z-50 bg-white/90 backdrop-blur-sm flex items-center justify-center transition-all duration-500 rounded-[3rem]">
+      <div *ngIf="Loading" class="absolute inset-0 z-50 bg-white/95 flex items-center justify-center transition-all rounded-2xl">
         <div class="flex flex-col items-center">
-          <div class="w-14 h-14 border-4 border-premium-accent/20 border-t-premium-accent rounded-full animate-spin">
-          </div>
-          <p class="mt-6 text-premium-accent font-black tracking-[0.2em] text-xs uppercase animate-pulse">
-            Initialisation...</p>
+          <div class="w-10 h-10 border-2 border-gray-300 border-t-gray-900 rounded-full animate-spin"></div>
+          <p class="mt-3 text-gray-600 text-sm">Création du compte...</p>
         </div>
       </div>
 
-      <form (ngSubmit)="register()" #RegisterForm="ngForm" class="space-y-8">
-        <!-- Identity Section -->
-        <div class="space-y-6">
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div class="space-y-2">
-              <label class="block text-xs font-black text-premium-text-muted uppercase tracking-[0.2em] ml-1"
-                for="nom">Nom</label>
-              <input type="text" id="nom" name="nom" [(ngModel)]="Nom" required placeholder="Ex: Dupont"
-                class="block w-full px-6 py-4 bg-premium-soft-bg border border-premium-border/50 text-premium-text rounded-2xl focus:bg-white focus:ring-2 focus:ring-premium-accent/20 focus:border-premium-accent transition-all outline-none placeholder:text-premium-text-muted/30 font-bold"
-                #nomCtrl="ngModel" />
-            </div>
-            <div class="space-y-2">
-              <label class="block text-xs font-black text-premium-text-muted uppercase tracking-[0.2em] ml-1"
-                for="prenom">Prénom</label>
-              <input type="text" id="prenom" name="prenom" [(ngModel)]="Prenom" required placeholder="Ex: Jean"
-                class="block w-full px-6 py-4 bg-premium-soft-bg border border-premium-border/50 text-premium-text rounded-2xl focus:bg-white focus:ring-2 focus:ring-premium-accent/20 focus:border-premium-accent transition-all outline-none placeholder:text-premium-text-muted/30 font-bold"
-                #prenomCtrl="ngModel" />
-            </div>
+      <form (ngSubmit)="register()" #RegisterForm="ngForm" class="space-y-5">
+        <!-- Name Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div class="space-y-1.5">
+            <label class="block text-sm font-medium text-gray-700" for="nom">Nom</label>
+            <input
+              type="text"
+              id="nom"
+              name="nom"
+              [(ngModel)]="Nom"
+              required
+              placeholder="Dupont"
+              class="block w-full px-4 py-3 bg-gray-50 border border-gray-200 text-gray-900 rounded-lg focus:ring-1 focus:ring-gray-900 focus:border-gray-900 transition-all outline-none placeholder:text-gray-400"
+              #nomCtrl="ngModel"
+            />
+            <p class="text-xs text-red-500" *ngIf="nomCtrl.invalid && nomCtrl.touched">Le nom est requis</p>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div class="space-y-2">
-              <label class="block text-xs font-black text-premium-text-muted uppercase tracking-[0.2em] ml-1"
-                for="email">Email Mobile</label>
-              <input type="email" id="email" name="email" [(ngModel)]="Email" required email
-                placeholder="nom@entreprise.com"
-                class="block w-full px-6 py-4 bg-premium-soft-bg border border-premium-border/50 text-premium-text rounded-2xl focus:bg-white focus:ring-2 focus:ring-premium-accent/20 focus:border-premium-accent transition-all outline-none placeholder:text-premium-text-muted/30 font-bold"
-                #emailCtrl="ngModel" />
-            </div>
-            <div class="space-y-2">
-              <label class="block text-xs font-black text-premium-text-muted uppercase tracking-[0.2em] ml-1"
-                for="telephone">Ligne Directe</label>
-              <div class="relative">
-                <span
-                  class="absolute inset-y-0 left-0 pl-6 flex items-center text-premium-accent text-xs font-black">+212</span>
-                <input type="number" id="telephone" name="telephone" [(ngModel)]="Telephone" required
-                  placeholder="600-000000"
-                  class="block w-full pl-16 pr-6 py-4 bg-premium-soft-bg border border-premium-border/50 text-premium-text rounded-2xl focus:bg-white focus:ring-2 focus:ring-premium-accent/20 focus:border-premium-accent transition-all outline-none placeholder:text-premium-text-muted/30 font-bold"
-                  #telephoneCtrl="ngModel" />
-              </div>
-            </div>
-          </div>
-
-          <div class="space-y-2">
-            <label class="block text-xs font-black text-premium-text-muted uppercase tracking-[0.2em] ml-1"
-              for="adress">Siège Social / Adresse</label>
-            <input type="text" id="adress" name="adress" [(ngModel)]="Adress" required
-              placeholder="N°, Boulevard, Ville, Pays"
-              class="block w-full px-6 py-4 bg-premium-soft-bg border border-premium-border/50 text-premium-text rounded-2xl focus:bg-white focus:ring-2 focus:ring-premium-accent/20 focus:border-premium-accent transition-all outline-none placeholder:text-premium-text-muted/30 font-bold"
-              #adressCtrl="ngModel" />
-          </div>
-
-          <div class="space-y-2">
-            <label class="block text-xs font-black text-premium-text-muted uppercase tracking-[0.2em] ml-1"
-              for="password">Mot de passe</label>
-            <input type="password" id="password" name="password" [(ngModel)]="Password" required
-              placeholder="8 caractères minimum"
-              class="block w-full px-6 py-4 bg-premium-soft-bg border border-premium-border/50 text-premium-text rounded-2xl focus:bg-white focus:ring-2 focus:ring-premium-accent/20 focus:border-premium-accent transition-all outline-none placeholder:text-premium-text-muted/30 font-bold"
-              #passwordCtrl="ngModel" />
+          <div class="space-y-1.5">
+            <label class="block text-sm font-medium text-gray-700" for="prenom">Prénom</label>
+            <input
+              type="text"
+              id="prenom"
+              name="prenom"
+              [(ngModel)]="Prenom"
+              required
+              placeholder="Jean"
+              class="block w-full px-4 py-3 bg-gray-50 border border-gray-200 text-gray-900 rounded-lg focus:ring-1 focus:ring-gray-900 focus:border-gray-900 transition-all outline-none placeholder:text-gray-400"
+              #prenomCtrl="ngModel"
+            />
+            <p class="text-xs text-red-500" *ngIf="prenomCtrl.invalid && prenomCtrl.touched">Le prénom est requis</p>
           </div>
         </div>
 
-        <div class="space-y-6 pt-4">
-          <button type="submit"
-            class="w-full flex justify-center items-center gap-4 py-5 px-6 bg-premium-accent hover:bg-premium-accent-hover text-white text-sm font-black uppercase tracking-[0.2em] rounded-2xl transition-all shadow-xl shadow-premium-accent/20 disabled:opacity-50 disabled:cursor-not-allowed transform hover:-translate-y-1 active:translate-y-0"
-            [disabled]="RegisterForm.invalid || Loading">
-            <span>Créer un compte Elite</span>
-            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
-          </button>
+        <!-- Contact Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div class="space-y-1.5">
+            <label class="block text-sm font-medium text-gray-700" for="telephone">Téléphone</label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-gray-500 text-sm font-medium">+212</span>
+              <input
+                type="number"
+                id="telephone"
+                name="telephone"
+                [(ngModel)]="Telephone"
+                required
+                placeholder="6XX-XXXXXX"
+                class="block w-full pl-14 pr-4 py-3 bg-gray-50 border border-gray-200 text-gray-900 rounded-lg focus:ring-1 focus:ring-gray-900 focus:border-gray-900 transition-all outline-none placeholder:text-gray-400"
+                #telephoneCtrl="ngModel"
+              />
+            </div>
+            <p class="text-xs text-red-500" *ngIf="telephoneCtrl.invalid && telephoneCtrl.touched">Le téléphone est requis</p>
+          </div>
 
-          <p class="text-center text-sm text-premium-text-muted font-bold">
-            Déjà parmi nous ?
-            <a routerLink="/auth/login"
-              class="font-black text-premium-accent hover:underline underline-offset-4 ml-2">Connectez-vous</a>
-          </p>
+          <div class="space-y-1.5">
+            <label class="block text-sm font-medium text-gray-700" for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              [(ngModel)]="Email"
+              required
+              email
+              placeholder="jean@exemple.com"
+              class="block w-full px-4 py-3 bg-gray-50 border border-gray-200 text-gray-900 rounded-lg focus:ring-1 focus:ring-gray-900 focus:border-gray-900 transition-all outline-none placeholder:text-gray-400"
+              #emailCtrl="ngModel"
+            />
+            <p class="text-xs text-red-500" *ngIf="emailCtrl.invalid && emailCtrl.touched">Email invalide</p>
+          </div>
+        </div>
+
+        <!-- Address -->
+        <div class="space-y-1.5">
+          <label class="block text-sm font-medium text-gray-700" for="adress">Adresse</label>
+          <input
+            type="text"
+            id="adress"
+            name="adress"
+            [(ngModel)]="Adress"
+            required
+            placeholder="123 Rue, Ville, Pays"
+            class="block w-full px-4 py-3 bg-gray-50 border border-gray-200 text-gray-900 rounded-lg focus:ring-1 focus:ring-gray-900 focus:border-gray-900 transition-all outline-none placeholder:text-gray-400"
+            #adressCtrl="ngModel"
+          />
+          <p class="text-xs text-red-500" *ngIf="adressCtrl.invalid && adressCtrl.touched">L'adresse est requise</p>
+        </div>
+
+        <!-- Password -->
+        <div class="space-y-1.5">
+          <label class="block text-sm font-medium text-gray-700" for="password">Mot de passe</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            [(ngModel)]="Password"
+            required
+            placeholder="Min. 8 caractères"
+            class="block w-full px-4 py-3 bg-gray-50 border border-gray-200 text-gray-900 rounded-lg focus:ring-1 focus:ring-gray-900 focus:border-gray-900 transition-all outline-none placeholder:text-gray-400"
+            #passwordCtrl="ngModel"
+          />
+          <div class="flex gap-1 mt-2">
+             <div class="h-1 flex-1 rounded-full bg-gray-200"></div>
+             <div class="h-1 flex-1 rounded-full bg-gray-200"></div>
+             <div class="h-1 flex-1 rounded-full bg-gray-200"></div>
+             <div class="h-1 flex-1 rounded-full bg-gray-200"></div>
+          </div>
+          <p class="text-xs text-red-500" *ngIf="passwordCtrl.invalid && passwordCtrl.touched">Le mot de passe est requis</p>
+        </div>
+
+        <!-- Submit -->
+        <button
+          type="submit"
+          class="w-full py-3.5 px-4 bg-gray-900 text-white text-sm font-medium rounded-lg hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 transition-all disabled:bg-gray-300 disabled:cursor-not-allowed"
+          [disabled]="RegisterForm.invalid || Loading"
+        >
+          Créer mon compte
+        </button>
+
+        <!-- Login Link -->
+        <p class="text-center text-sm text-gray-500 pt-2">
+          Déjà un compte?
+          <a routerLink="/auth/login" class="font-medium text-gray-900 hover:underline">Se connecter</a>
+        </p>
+
+        <!-- Divider -->
+        <div class="relative flex items-center py-3">
+          <div class="flex-grow border-t border-gray-200"></div>
+          <span class="flex-shrink mx-4 text-gray-400 text-xs">ou</span>
+          <div class="flex-grow border-t border-gray-200"></div>
+        </div>
+
+        <!-- Social Registration Buttons -->
+        <div class="grid grid-cols-2 gap-3">
+          <button
+            type="button"
+            (click)="registerWithGoogle()"
+            class="flex items-center justify-center py-3 px-4 border border-gray-200 rounded-lg bg-white hover:bg-gray-50 transition-all"
+          >
+            <svg class="w-5 h-5 mr-2" viewBox="0 0 48 48">
+              <path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24s8.955,20,20,20s20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"></path>
+              <path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"></path>
+              <path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"></path>
+              <path fill="#1976D2" d="M43.611,20.083L43.611,20.083L42,20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"></path>
+            </svg>
+            <span class="text-sm font-medium text-gray-700">Google</span>
+          </button>
+          <button
+            type="button"
+            (click)="registerWithFacebook()"
+            class="flex items-center justify-center py-3 px-4 border border-gray-200 rounded-lg bg-white hover:bg-gray-50 transition-all"
+          >
+            <svg class="w-5 h-5 mr-2" fill="#1877F2" viewBox="0 0 24 24">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+            <span class="text-sm font-medium text-gray-700">Facebook</span>
+          </button>
         </div>
       </form>
-    </div>
-
-    <!-- Minimalist Footer -->
-    <div class="mt-12 text-center text-premium-text-muted/30 text-[10px] font-black uppercase tracking-[0.4em]">
-      &copy; 2026 SmartLogi Enterprise &bull; Secure Protocol v2.0
     </div>
   </div>
 </div>

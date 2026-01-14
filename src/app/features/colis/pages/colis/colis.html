@@ -1,0 +1,78 @@
+<div class="min-h-screen bg-gray-50 p-6 md:p-10">
+  <!-- Header Section minimaliste -->
+  <div class="mb-12 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+    <div>
+      <h1 class="text-3xl font-semibold text-gray-900">Mes Colis</h1>
+      <p class="text-gray-500 mt-1.5">Gérez vos expéditions en toute simplicité</p>
+    </div>
+
+    <div class="flex flex-col sm:flex-row gap-3">
+      <div class="relative">
+        <span class="absolute inset-y-0 left-3 flex items-center text-gray-400">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            />
+          </svg>
+        </span>
+        <input
+          type="text"
+          placeholder="Rechercher..."
+          class="pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-lg w-full sm:w-64 focus:outline-none focus:ring-1 focus:ring-gray-900 focus:border-gray-900 transition-all text-sm"
+        />
+      </div>
+      <button
+        class="bg-gray-900 hover:bg-gray-800 text-white px-5 py-2.5 rounded-lg font-medium transition-all flex items-center justify-center gap-2 text-sm"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 4v16m8-8H4"
+          />
+        </svg>
+        Nouveau
+      </button>
+    </div>
+  </div>
+
+  <!-- Loading Overlay -->
+  <div
+    class="flex items-center justify-center py-20"
+    [class.hidden]="!loading"
+  >
+    <div class="flex flex-col items-center">
+      <div class="w-10 h-10 border-2 border-gray-300 border-t-gray-900 rounded-full animate-spin"></div>
+      <p class="mt-3 text-gray-600 text-sm">Chargement...</p>
+    </div>
+  </div>
+
+  <!-- Cards Grid minimaliste -->
+  @if (colis().length > 0) {
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    @for (item of colis(); track item.id) {
+      <app-card [colis]="item"></app-card>
+    }
+  </div>
+  } @else {
+    <div class="text-center py-20">
+      <p class="text-gray-400">{{errorMessage}}</p>
+    </div>
+  }
+</div>
