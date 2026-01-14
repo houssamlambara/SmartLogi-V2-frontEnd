@@ -40,16 +40,26 @@ export class Login {
         next: (response: any) => {
           toast.success('Login successful');
 
-          if (response.roleName === 'GESTIONNAIRE') {
+          if (response.userRole === 'GESTIONNAIRE') {
             this.router.navigate(['/admin/dashboard']);
-          } else if (response.userRole === 'CLIENT') {
+          } else if (response.userRole === 'Sender') {
             this.router.navigate(['/']);
+          } else if (response.userRole === 'LIVREUR'){
+            this.router.navigate(['/colis'])
           }
         },
         error: (err: any) => {
           toast.error(err?.error?.message || 'Something went wrong!');
         }
       });
+  }
+
+  loginWithGoogle(): void {
+    window.location.href = 'http://localhost:8080/oauth2/authorization/google';
+  }
+
+  loginWithFacebook(): void {
+    window.location.href = 'http://localhost:8080/oauth2/authorization/facebook';
   }
 
   ngOnInit() {
