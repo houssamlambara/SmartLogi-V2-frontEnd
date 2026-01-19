@@ -1,179 +1,160 @@
-<div class="min-h-screen flex items-center justify-center bg-gray-50 py-16 px-4 sm:px-6 lg:px-8">
-  <div class="max-w-2xl w-full space-y-8">
-    <!-- Header minimaliste -->
-    <div class="text-center">
-      <div class="inline-flex items-center justify-center w-14 h-14 bg-gray-900 rounded-full mb-5">
-        <span class="text-white text-xl font-bold">S</span>
+<div
+  class="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+
+  <!-- Decorative Background Blobs -->
+  <div
+    class="absolute top-0 left-0 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob">
+  </div>
+  <div
+    class="absolute top-0 right-0 w-96 h-96 bg-indigo-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000">
+  </div>
+  <div
+    class="absolute -bottom-32 left-20 w-96 h-96 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000">
+  </div>
+
+  <div class="max-w-2xl w-full relative z-10">
+    <!-- Header -->
+    <div class="text-center mb-8">
+      <div
+        class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-tr from-indigo-500 to-violet-500 rounded-2xl shadow-lg shadow-indigo-200/50 mb-4 transform hover:rotate-6 transition-transform duration-300">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+        </svg>
       </div>
-      <h2 class="text-3xl font-semibold text-gray-900 tracking-tight">Créer un compte</h2>
-      <p class="mt-2 text-gray-500">Rejoignez SmartLogi aujourd'hui</p>
+      <h2 class="text-3xl font-extrabold text-slate-800 tracking-tight font-display">Create your account</h2>
+      <p class="mt-2 text-base text-slate-500">Join SmartLogi and start managing your deliveries today</p>
     </div>
 
-    <!-- Form Card minimaliste -->
-    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
-      <!-- Loading Overlay -->
-      <div *ngIf="Loading" class="absolute inset-0 z-50 bg-white/95 flex items-center justify-center transition-all rounded-2xl">
-        <div class="flex flex-col items-center">
-          <div class="w-10 h-10 border-2 border-gray-300 border-t-gray-900 rounded-full animate-spin"></div>
-          <p class="mt-3 text-gray-600 text-sm">Création du compte...</p>
-        </div>
-      </div>
+    <!-- Form Card -->
+    <div
+      class="bg-white/70 backdrop-blur-2xl border border-white/60 p-8 rounded-3xl shadow-xl shadow-indigo-100/50 relative overflow-hidden">
 
-      <form (ngSubmit)="register()" #RegisterForm="ngForm" class="space-y-5">
+      <form (ngSubmit)="register()" #RegisterForm="ngForm" class="space-y-6 relative z-10">
         <!-- Name Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-          <div class="space-y-1.5">
-            <label class="block text-sm font-medium text-gray-700" for="nom">Nom</label>
-            <input
-              type="text"
-              id="nom"
-              name="nom"
-              [(ngModel)]="Nom"
-              required
-              placeholder="Dupont"
-              class="block w-full px-4 py-3 bg-gray-50 border border-gray-200 text-gray-900 rounded-lg focus:ring-1 focus:ring-gray-900 focus:border-gray-900 transition-all outline-none placeholder:text-gray-400"
-              #nomCtrl="ngModel"
-            />
-            <p class="text-xs text-red-500" *ngIf="nomCtrl.invalid && nomCtrl.touched">Le nom est requis</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div class="space-y-2">
+            <label class="block text-sm font-semibold text-slate-700 ml-1" for="nom">Nom</label>
+            <input type="text" id="nom" name="nom" [(ngModel)]="Nom" required placeholder="Doe"
+              class="block w-full px-4 py-3 bg-white/50 border border-gray-100 text-slate-900 rounded-xl focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all outline-none placeholder:text-slate-400"
+              #nomCtrl="ngModel" />
+            <p class="text-xs text-rose-500 mt-1 ml-1" *ngIf="nomCtrl.invalid && nomCtrl.touched">Nom is required</p>
           </div>
 
-          <div class="space-y-1.5">
-            <label class="block text-sm font-medium text-gray-700" for="prenom">Prénom</label>
-            <input
-              type="text"
-              id="prenom"
-              name="prenom"
-              [(ngModel)]="Prenom"
-              required
-              placeholder="Jean"
-              class="block w-full px-4 py-3 bg-gray-50 border border-gray-200 text-gray-900 rounded-lg focus:ring-1 focus:ring-gray-900 focus:border-gray-900 transition-all outline-none placeholder:text-gray-400"
-              #prenomCtrl="ngModel"
-            />
-            <p class="text-xs text-red-500" *ngIf="prenomCtrl.invalid && prenomCtrl.touched">Le prénom est requis</p>
+          <div class="space-y-2">
+            <label class="block text-sm font-semibold text-slate-700 ml-1" for="prenom">Prenom</label>
+            <input type="text" id="prenom" name="prenom" [(ngModel)]="Prenom" required placeholder="John"
+              class="block w-full px-4 py-3 bg-white/50 border border-gray-100 text-slate-900 rounded-xl focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all outline-none placeholder:text-slate-400"
+              #prenomCtrl="ngModel" />
+            <p class="text-xs text-rose-500 mt-1 ml-1" *ngIf="prenomCtrl.invalid && prenomCtrl.touched">Prenom is
+              required</p>
           </div>
         </div>
 
         <!-- Contact Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-          <div class="space-y-1.5">
-            <label class="block text-sm font-medium text-gray-700" for="telephone">Téléphone</label>
-            <div class="relative">
-              <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-gray-500 text-sm font-medium">+212</span>
-              <input
-                type="number"
-                id="telephone"
-                name="telephone"
-                [(ngModel)]="Telephone"
-                required
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div class="space-y-2">
+            <label class="block text-sm font-semibold text-slate-700 ml-1" for="telephone">Telephone</label>
+            <div class="relative group">
+              <span
+                class="absolute inset-y-0 left-0 pl-4 flex items-center text-slate-400 text-sm font-medium">+212</span>
+              <input type="number" id="telephone" name="telephone" [(ngModel)]="Telephone" required
                 placeholder="6XX-XXXXXX"
-                class="block w-full pl-14 pr-4 py-3 bg-gray-50 border border-gray-200 text-gray-900 rounded-lg focus:ring-1 focus:ring-gray-900 focus:border-gray-900 transition-all outline-none placeholder:text-gray-400"
-                #telephoneCtrl="ngModel"
-              />
+                class="block w-full pl-14 pr-4 py-3 bg-white/50 border border-gray-100 text-slate-900 rounded-xl focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all outline-none placeholder:text-slate-400"
+                #telephoneCtrl="ngModel" />
             </div>
-            <p class="text-xs text-red-500" *ngIf="telephoneCtrl.invalid && telephoneCtrl.touched">Le téléphone est requis</p>
+            <p class="text-xs text-rose-500 mt-1 ml-1" *ngIf="telephoneCtrl.invalid && telephoneCtrl.touched">Phone
+              number is required</p>
           </div>
 
-          <div class="space-y-1.5">
-            <label class="block text-sm font-medium text-gray-700" for="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              [(ngModel)]="Email"
-              required
-              email
-              placeholder="jean@exemple.com"
-              class="block w-full px-4 py-3 bg-gray-50 border border-gray-200 text-gray-900 rounded-lg focus:ring-1 focus:ring-gray-900 focus:border-gray-900 transition-all outline-none placeholder:text-gray-400"
-              #emailCtrl="ngModel"
-            />
-            <p class="text-xs text-red-500" *ngIf="emailCtrl.invalid && emailCtrl.touched">Email invalide</p>
+          <div class="space-y-2">
+            <label class="block text-sm font-semibold text-slate-700 ml-1" for="email">Email</label>
+            <input type="email" id="email" name="email" [(ngModel)]="Email" required email
+              placeholder="john@example.com"
+              class="block w-full px-4 py-3 bg-white/50 border border-gray-100 text-slate-900 rounded-xl focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all outline-none placeholder:text-slate-400"
+              #emailCtrl="ngModel" />
+            <p class="text-xs text-rose-500 mt-1 ml-1" *ngIf="emailCtrl.invalid && emailCtrl.touched">Please enter a
+              valid email</p>
           </div>
         </div>
 
         <!-- Address -->
-        <div class="space-y-1.5">
-          <label class="block text-sm font-medium text-gray-700" for="adress">Adresse</label>
-          <input
-            type="text"
-            id="adress"
-            name="adress"
-            [(ngModel)]="Adress"
-            required
-            placeholder="123 Rue, Ville, Pays"
-            class="block w-full px-4 py-3 bg-gray-50 border border-gray-200 text-gray-900 rounded-lg focus:ring-1 focus:ring-gray-900 focus:border-gray-900 transition-all outline-none placeholder:text-gray-400"
-            #adressCtrl="ngModel"
-          />
-          <p class="text-xs text-red-500" *ngIf="adressCtrl.invalid && adressCtrl.touched">L'adresse est requise</p>
+        <div class="space-y-2">
+          <label class="block text-sm font-semibold text-slate-700 ml-1" for="adress">Address</label>
+          <input type="text" id="adress" name="adress" [(ngModel)]="Adress" required
+            placeholder="123 Street, City, Country"
+            class="block w-full px-4 py-3 bg-white/50 border border-gray-100 text-slate-900 rounded-xl focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all outline-none placeholder:text-slate-400"
+            #adressCtrl="ngModel" />
+          <p class="text-xs text-rose-500 mt-1 ml-1" *ngIf="adressCtrl.invalid && adressCtrl.touched">Address is
+            required</p>
         </div>
 
         <!-- Password -->
-        <div class="space-y-1.5">
-          <label class="block text-sm font-medium text-gray-700" for="password">Mot de passe</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            [(ngModel)]="Password"
-            required
-            placeholder="Min. 8 caractères"
-            class="block w-full px-4 py-3 bg-gray-50 border border-gray-200 text-gray-900 rounded-lg focus:ring-1 focus:ring-gray-900 focus:border-gray-900 transition-all outline-none placeholder:text-gray-400"
-            #passwordCtrl="ngModel"
-          />
-          <div class="flex gap-1 mt-2">
-             <div class="h-1 flex-1 rounded-full bg-gray-200"></div>
-             <div class="h-1 flex-1 rounded-full bg-gray-200"></div>
-             <div class="h-1 flex-1 rounded-full bg-gray-200"></div>
-             <div class="h-1 flex-1 rounded-full bg-gray-200"></div>
+        <div class="space-y-2">
+          <label class="block text-sm font-semibold text-slate-700 ml-1" for="password">Password</label>
+          <input type="password" id="password" name="password" [(ngModel)]="Password" required
+            placeholder="Min. 8 characters"
+            class="block w-full px-4 py-3 bg-white/50 border border-gray-100 text-slate-900 rounded-xl focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all outline-none placeholder:text-slate-400"
+            #passwordCtrl="ngModel" />
+          <div class="flex gap-1 mt-1.5 px-1">
+            <div class="h-1 flex-1 rounded-full bg-slate-200"></div>
+            <div class="h-1 flex-1 rounded-full bg-slate-200"></div>
+            <div class="h-1 flex-1 rounded-full bg-slate-200"></div>
+            <div class="h-1 flex-1 rounded-full bg-slate-200"></div>
           </div>
-          <p class="text-xs text-red-500" *ngIf="passwordCtrl.invalid && passwordCtrl.touched">Le mot de passe est requis</p>
+          <p class="text-xs text-rose-500 mt-1 ml-1" *ngIf="passwordCtrl.invalid && passwordCtrl.touched">Password is
+            required</p>
         </div>
 
         <!-- Submit -->
-        <button
-          type="submit"
-          class="w-full py-3.5 px-4 bg-gray-900 text-white text-sm font-medium rounded-lg hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 transition-all disabled:bg-gray-300 disabled:cursor-not-allowed"
-          [disabled]="RegisterForm.invalid || Loading"
-        >
-          Créer mon compte
+        <button type="submit"
+          class="w-full flex justify-center py-4 px-4 border border-transparent text-sm font-bold rounded-xl text-white bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 disabled:opacity-70 disabled:cursor-not-allowed transform hover:-translate-y-0.5"
+          [disabled]="RegisterForm.invalid">
+          Create Account
         </button>
 
         <!-- Login Link -->
-        <p class="text-center text-sm text-gray-500 pt-2">
-          Déjà un compte?
-          <a routerLink="/auth/login" class="font-medium text-gray-900 hover:underline">Se connecter</a>
+        <p class="text-center text-sm text-slate-600">
+          Already have an account?
+          <a routerLink="/auth/login" class="font-bold text-indigo-600 hover:text-indigo-700 transition-colors">Sign in
+            here</a>
         </p>
 
         <!-- Divider -->
-        <div class="relative flex items-center py-3">
+        <div class="relative flex items-center py-2">
           <div class="flex-grow border-t border-gray-200"></div>
-          <span class="flex-shrink mx-4 text-gray-400 text-xs">ou</span>
+          <span class="flex-shrink mx-4 text-slate-400 text-xs font-semibold uppercase tracking-wider">Or register
+            with</span>
           <div class="flex-grow border-t border-gray-200"></div>
         </div>
 
         <!-- Social Registration Buttons -->
-        <div class="grid grid-cols-2 gap-3">
-          <button
-            type="button"
-            (click)="registerWithGoogle()"
-            class="flex items-center justify-center py-3 px-4 border border-gray-200 rounded-lg bg-white hover:bg-gray-50 transition-all"
-          >
+        <div class="grid grid-cols-2 gap-4">
+          <button type="button" (click)="registerWithGoogle()"
+            class="flex items-center justify-center py-3 px-4 border border-gray-100 rounded-xl bg-white hover:bg-gray-50 transition-all shadow-sm hover:shadow-md text-slate-600 font-medium text-sm group">
             <svg class="w-5 h-5 mr-2" viewBox="0 0 48 48">
-              <path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24s8.955,20,20,20s20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"></path>
-              <path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"></path>
-              <path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"></path>
-              <path fill="#1976D2" d="M43.611,20.083L43.611,20.083L42,20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"></path>
+              <path fill="#FFC107"
+                d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24s8.955,20,20,20s20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z">
+              </path>
+              <path fill="#FF3D00"
+                d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z">
+              </path>
+              <path fill="#4CAF50"
+                d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z">
+              </path>
+              <path fill="#1976D2"
+                d="M43.611,20.083L43.611,20.083L42,20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z">
+              </path>
             </svg>
-            <span class="text-sm font-medium text-gray-700">Google</span>
+            Google
           </button>
-          <button
-            type="button"
-            (click)="registerWithFacebook()"
-            class="flex items-center justify-center py-3 px-4 border border-gray-200 rounded-lg bg-white hover:bg-gray-50 transition-all"
-          >
+          <button type="button" (click)="registerWithFacebook()"
+            class="flex items-center justify-center py-3 px-4 border border-gray-100 rounded-xl bg-white hover:bg-gray-50 transition-all shadow-sm hover:shadow-md text-slate-600 font-medium text-sm group">
             <svg class="w-5 h-5 mr-2" fill="#1877F2" viewBox="0 0 24 24">
-              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              <path
+                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
             </svg>
-            <span class="text-sm font-medium text-gray-700">Facebook</span>
+            Facebook
           </button>
         </div>
       </form>
