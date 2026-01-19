@@ -1,9 +1,12 @@
-import { inject } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { ApiService } from '../../core/services/api.service';
 import { Sender } from './models/sender.model';
 import { authRequest } from './models/login/login-request.model';
 import { authResponse } from './models/login/login-response.model';
 
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthApi {
 
   private api = inject(ApiService);

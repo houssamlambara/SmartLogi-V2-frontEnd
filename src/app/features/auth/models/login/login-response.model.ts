@@ -1,4 +1,6 @@
 export interface authResponse {
-    token: string,
-    roleName: string
+    data: {
+        token: string;
+    };
+    roleName: string;
 }

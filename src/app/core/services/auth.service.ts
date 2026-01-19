@@ -1,11 +1,10 @@
 import { Inject, Injectable } from '@angular/core';
-import {catchError, map, tap, throwError} from 'rxjs';
+import { catchError, tap, throwError } from 'rxjs';
 import { jwtService } from './jwt.service';
 import { AuthApi } from '../../features/auth/auth.api';
 import { Sender } from '../../features/auth/models/sender.model';
 import { authRequest } from '../../features/auth/models/login/login-request.model';
 import { authResponse } from '../../features/auth/models/login/login-response.model';
-import {isPlatformBrowser} from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +14,7 @@ export class AuthService {
   constructor(
     private authApi: AuthApi,
     private jwtSer: jwtService
-  ) {}
+  ) { }
 
   register(body: Sender) {
     return this.authApi.register(body);
@@ -25,13 +24,12 @@ export class AuthService {
     return this.authApi
       .login(body)
       .pipe(
-        map((res: any) => {
-          return res.data;
-        }),
         tap((res: authResponse) => {
-          console.log(res);
-          localStorage.setItem('jwtToken', res.token);
-          localStorage.setItem('userRole', res.roleName);
+          localStorage.setItem('jwtToken', res.data.token);
+          const role = this.jwtSer.getRole();
+          if (role) {
+            localStorage.setItem('userRole', role);
+          }
         }),
         catchError(err => {
           return throwError(() => err)
@@ -61,10 +59,9 @@ export class AuthService {
   }
 
   hasRole(role: string): boolean {
-    if(this.jwtSer.getRole() == role){
+    if (this.jwtSer.getRole() == role) {
       return true;
     }
     return false;
   }
-
 }

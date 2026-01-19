@@ -17,7 +17,16 @@ export class jwtService {
     if (token) {
       const role: string = this.decodeToken(token).roles;
       const rolePrefix = role.split(",").find(item => item.startsWith("ROLE_"));
+      console.log("roooooooooole: " + rolePrefix);
       return rolePrefix?.split("_")[1] ?? null;
+    }
+    return null;
+  }
+
+  getUsername(): string | null {
+    const token = localStorage.getItem('jwtToken');
+    if (token) {
+      return this.decodeToken(token).sub;
     }
     return null;
   }
