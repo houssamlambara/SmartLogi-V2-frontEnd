@@ -18,8 +18,8 @@ export class Card {
     id: '',
     description: '',
     poids: 0,
-    vileDistination: '',
-    receiver: {
+    villeDestination: '',
+    destinataire: {
       id: '',
       nom: '',
       prenom: '',
@@ -27,7 +27,7 @@ export class Card {
       telephone: '',
       adresse: ''
     },
-    sender: {
+    clientExpediteur: {
       id: '',
       nom: '',
       prenom: '',
@@ -36,15 +36,15 @@ export class Card {
       adresse: ''
     },
     livreur: null,
-    city: {
+    zone: {
       id: '',
       nom: '',
       codePostal: 0
     },
     historiqueLivraisonList: [],
-    colisProducts: [],
-    status: COLIS_STATUS.CREATED,
-    priority: COLIS_PRIORITY.URGENT
+    produits: [],
+    statut: COLIS_STATUS.CREATED,
+    priorite: COLIS_PRIORITY.URGENT
   };
 
   getStatusLabel(status: COLIS_STATUS): string {
@@ -59,11 +59,11 @@ export class Card {
 
   getStatusClass(status: COLIS_STATUS): string {
     switch (status) {
-      case COLIS_STATUS.CREATED: return 'bg-blue-50 text-blue-600 ring-blue-100';
-      case COLIS_STATUS.COLLECTED: return 'bg-amber-50 text-amber-600 ring-amber-100';
-      case COLIS_STATUS.IN_STOCK: return 'bg-purple-50 text-purple-600 ring-purple-100';
-      case COLIS_STATUS.LIVRED: return 'bg-emerald-50 text-emerald-600 ring-emerald-100';
-      default: return 'bg-slate-50 text-slate-600 ring-slate-100';
+      case COLIS_STATUS.CREATED: return 'bg-primary-50 text-primary-600 ring-primary-100'; // Violet
+      case COLIS_STATUS.COLLECTED: return 'bg-secondary-50 text-secondary-600 ring-secondary-100'; // Rose
+      case COLIS_STATUS.IN_STOCK: return 'bg-amber-50 text-amber-600 ring-amber-100'; // Amber (Keep for distinction)
+      case COLIS_STATUS.LIVRED: return 'bg-emerald-50 text-emerald-600 ring-emerald-100'; // Emerald (Keep for success)
+      default: return 'bg-neutral-50 text-neutral-600 ring-neutral-100';
     }
   }
 
@@ -79,20 +79,20 @@ export class Card {
 
   getProgressClass(status: COLIS_STATUS): string {
     switch (status) {
-      case COLIS_STATUS.CREATED: return 'bg-blue-500';
-      case COLIS_STATUS.COLLECTED: return 'bg-amber-500';
-      case COLIS_STATUS.IN_STOCK: return 'bg-purple-500';
+      case COLIS_STATUS.CREATED: return 'bg-primary-500';
+      case COLIS_STATUS.COLLECTED: return 'bg-secondary-500';
+      case COLIS_STATUS.IN_STOCK: return 'bg-amber-500';
       case COLIS_STATUS.LIVRED: return 'bg-emerald-500';
-      default: return 'bg-slate-500';
+      default: return 'bg-neutral-300';
     }
   }
 
   getPriorityClass(priority: COLIS_PRIORITY): string {
     switch (priority) {
-      case COLIS_PRIORITY.URGENT: return 'text-rose-500';
-      case COLIS_PRIORITY.NORMALE: return 'text-blue-500';
-      case COLIS_PRIORITY.NON_URGENT: return 'text-slate-400';
-      default: return 'text-slate-400';
+      case COLIS_PRIORITY.URGENT: return 'text-secondary-500 font-bold';
+      case COLIS_PRIORITY.NORMALE: return 'text-primary-500 font-medium';
+      case COLIS_PRIORITY.NON_URGENT: return 'text-neutral-400';
+      default: return 'text-neutral-400';
     }
   }
 }

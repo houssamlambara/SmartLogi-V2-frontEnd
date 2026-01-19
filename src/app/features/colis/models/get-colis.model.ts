@@ -5,8 +5,8 @@ export interface colis {
   id: string;
   description: string;
   poids: number;
-  vileDistination: string;
-  receiver: {
+  villeDestination: string;
+  destinataire: {
     id: string;
     nom: string;
     prenom: string;
@@ -14,7 +14,7 @@ export interface colis {
     telephone: string;
     adresse: string;
   };
-  sender: {
+  clientExpediteur: {
     id: string;
     nom: string;
     prenom: string;
@@ -29,8 +29,12 @@ export interface colis {
     email: string;
     telephone: string;
     adresse: string;
+    zone: {
+      id: string;
+      nom: string;
+    };
   } | null;
-  city: {
+  zone: {
     id: string;
     nom: string;
     codePostal: number;
@@ -41,14 +45,14 @@ export interface colis {
     changementDate: string;
     comment: string;
   }[];
-  colisProducts: {
+  produits: {
     id: string;
     nom: string;
     category: string;
     poids: number;
-    price: number;
-    quantity: number;
+    prix: number;
+    quantite: number;
   }[];
-  status: COLIS_STATUS;
-  priority: COLIS_PRIORITY;
+  statut: COLIS_STATUS;
+  priorite: COLIS_PRIORITY;
 }
