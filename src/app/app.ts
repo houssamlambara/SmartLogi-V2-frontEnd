@@ -1,12 +1,13 @@
-import { Component, signal } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
-import { NavbarComponent } from './shared/components/navbar/navbar/navbar';
+import { SidebarComponent } from './shared/components/sidebar/sidebar';
 import { NgxSonnerToaster } from 'ngx-sonner';
+import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavbarComponent, NgxSonnerToaster],
+  imports: [RouterOutlet, SidebarComponent, NgxSonnerToaster, NgxSpinnerModule],
   templateUrl: "./app.html",
   styleUrl: './app.css'
 })

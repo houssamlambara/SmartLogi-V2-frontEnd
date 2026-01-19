@@ -25,7 +25,7 @@ export const routes: Routes = [
     loadComponent: () => import('./features/colis/pages/colis/colis').then((c) => c.Colis),
     canActivate: [AuthGuard, RoleGuard],
     data: {
-      roles: ['Sender', 'GESTIONNAIRE', 'LIVREUR'],
+      roles: ['CLIENT', 'GESTIONNAIRE', 'LIVREUR', 'Receiver'],
     },
   },
   {
@@ -33,11 +33,19 @@ export const routes: Routes = [
     loadComponent: () => import("./features/auth/components/OAuth2CallbackComponent").then(o => o.OAuth2CallbackComponent),
   },
   {
+    path: "colis/create",
+    loadComponent: () => import("./features/colis/pages/create-colis/create-colis").then(c => c.CreateColis),
+    canActivate: [AuthGuard, RoleGuard],
+    data: {
+      roles: ['CLIENT', 'GESTIONNAIRE'],
+    },
+  },
+  {
     path: "colis/:id",
     loadComponent: () => import("./features/colis/pages/colis-precise/single-colis/single-colis").then(c => c.SingleColis),
     canActivate: [AuthGuard, RoleGuard],
     data: {
-      roles: ['Sender', 'GESTIONNAIRE', 'LIVREUR'],
+      roles: ['CLIENT', 'GESTIONNAIRE', 'LIVREUR', 'Receiver'],
     },
   },
   {
