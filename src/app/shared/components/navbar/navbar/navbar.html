@@ -1,125 +1,130 @@
-<nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out"
-     [class.bg-white]="!menuOpen"
-     [class.border-b]="!menuOpen"
-     [class.border-gray-100]="!menuOpen"
-     [class.bg-gray-50]="menuOpen">
-  <div class="max-w-6xl mx-auto px-6 sm:px-8 lg:px-10">
-    <div class="flex justify-between items-center h-20">
-      <!-- Logo minimaliste -->
-      <div class="flex-shrink-0">
-        <a routerLink="/" class="flex items-center gap-3 group">
-          <div class="relative">
-            <div class="w-11 h-11 bg-gray-900 rounded-full flex items-center justify-center group-hover:bg-gray-800 transition-colors duration-300">
-              <span class="text-white text-lg font-bold">S</span>
+<nav class="fixed top-4 left-0 right-0 z-50 transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="bg-white/70 backdrop-blur-xl border border-white/40 shadow-soft-lg rounded-2xl h-16 px-4">
+      <div class="flex justify-between items-center h-full">
+        <!-- Logo -->
+        <div class="flex-shrink-0 flex items-center">
+          <a routerLink="/" class="flex items-center gap-3 group">
+            <div
+              class="w-10 h-10 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center shadow-glow group-hover:rotate-6 transition-transform duration-300 text-white">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
             </div>
-            <div class="absolute -bottom-1 -right-1 w-4 h-4 bg-emerald-400 rounded-full border-2 border-white"></div>
-          </div>
-          <span class="text-xl font-semibold text-gray-900 tracking-tight">SmartLogi</span>
-        </a>
-      </div>
-
-      <!-- Desktop Menu minimaliste -->
-      <div class="hidden md:flex md:items-center md:gap-8">
-        <div class="flex items-center gap-1">
-          <a routerLink="/admin/dashboard"
-             *ngIf="hasRole('GESTIONNAIRE')"
-             routerLinkActive="text-gray-900 font-medium"
-             [routerLinkActiveOptions]="{exact: true}"
-             class="px-3 py-2 text-sm text-gray-500 hover:text-gray-900 transition-colors duration-200">
-             Dashboard
-          </a>
-
-          <a routerLink="/colis"
-             *ngIf="hasRole('GESTIONNAIRE') || hasRole('LIVREUR') || hasRole('Sender')"
-             routerLinkActive="text-gray-900 font-medium"
-             class="px-3 py-2 text-sm text-gray-500 hover:text-gray-900 transition-colors duration-200">
-             Colis
-          </a>
-
-          <a routerLink="/clients"
-             *ngIf="hasRole('GESTIONNAIRE')"
-             routerLinkActive="text-gray-900 font-medium"
-             class="px-3 py-2 text-sm text-gray-500 hover:text-gray-900 transition-colors duration-200">
-             Clients
+            <span class="text-xl font-bold tracking-tight text-neutral-900 font-display">
+              SmartLogi
+            </span>
           </a>
         </div>
 
-        <div class="flex items-center gap-3">
-          <a routerLink="/profile"
-             *ngIf="isLoggedIn()"
-             class="p-2 text-gray-400 hover:text-gray-900 hover:bg-gray-50 rounded-full transition-all duration-200">
-             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-             </svg>
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex md:items-center space-x-1">
+          <a routerLink="/admin/dashboard" *ngIf="hasRole('GESTIONNAIRE')"
+            routerLinkActive="bg-primary-50 text-primary-600" [routerLinkActiveOptions]="{exact: true}"
+            class="px-4 py-2 rounded-xl text-sm font-semibold text-neutral-600 hover:text-primary-600 hover:bg-primary-50/50 transition-all duration-200">
+            Dashboard
           </a>
 
-          <a routerLink="/auth/login"
-             *ngIf="!isLoggedIn()"
-             class="px-5 py-2.5 bg-gray-900 text-white text-sm font-medium rounded-full hover:bg-gray-800 transition-all duration-200">
-             Connexion
+          <a routerLink="/colis"
+            *ngIf="hasRole('GESTIONNAIRE') || hasRole('LIVREUR') || hasRole('CLIENT') || hasRole('Receiver')"
+            routerLinkActive="bg-primary-50 text-primary-600"
+            class="px-4 py-2 rounded-xl text-sm font-semibold text-neutral-600 hover:text-primary-600 hover:bg-primary-50/50 transition-all duration-200">
+            Tracking
           </a>
 
-          <button (click)="logout()"
-                  *ngIf="isLoggedIn()"
-                  class="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-full transition-all duration-200">
+          <a routerLink="/clients" *ngIf="hasRole('GESTIONNAIRE')" routerLinkActive="bg-primary-50 text-primary-600"
+            class="px-4 py-2 rounded-xl text-sm font-semibold text-neutral-600 hover:text-primary-600 hover:bg-primary-50/50 transition-all duration-200">
+            Clients
+          </a>
+
+          <div class="h-6 w-px bg-neutral-200 mx-2" *ngIf="isLoggedIn()"></div>
+
+          <a routerLink="/profile" *ngIf="isLoggedIn()" routerLinkActive="bg-primary-50 text-primary-600"
+            class="px-4 py-2 rounded-xl text-sm font-semibold text-neutral-600 hover:text-primary-600 hover:bg-primary-50/50 transition-all duration-200 flex items-center gap-2">
+            <div
+              class="w-8 h-8 rounded-full bg-gradient-to-br from-primary-100 to-primary-200 flex items-center justify-center text-primary-700">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+            </div>
+            <span>Profile</span>
+          </a>
+
+          <a routerLink="/auth/login" *ngIf="!isLoggedIn()"
+            class="ml-4 px-6 py-2.5 bg-neutral-900 text-white rounded-xl text-sm font-bold hover:bg-black shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-0.5">
+            Sign In
+          </a>
+
+          <button (click)="logout()" *ngIf="isLoggedIn()"
+            class="ml-2 w-10 h-10 flex items-center justify-center text-neutral-400 hover:text-secondary-600 hover:bg-secondary-50 rounded-xl transition-all duration-200"
+            title="Logout">
             <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Mobile menu button -->
+        <div class="flex items-center md:hidden">
+          <button (click)="toggleMenu()"
+            class="p-2 rounded-xl transition-colors duration-200 hover:bg-neutral-100 text-neutral-600"
+            [class.bg-neutral-100]="menuOpen">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path *ngIf="!menuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16" />
+              <path *ngIf="menuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
         </div>
       </div>
-
-      <!-- Mobile menu button -->
-      <div class="flex items-center md:hidden">
-        <button (click)="toggleMenu()"
-                class="p-2 text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-all duration-200 focus:outline-none">
-          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path *ngIf="!menuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-            <path *ngIf="menuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-      </div>
     </div>
   </div>
 
-  <!-- Mobile Menu minimaliste -->
-  <div *ngIf="menuOpen" class="md:hidden border-t border-gray-100 bg-white">
-    <div class="px-6 py-4 space-y-1">
+  <!-- Mobile Menu -->
+  <div *ngIf="menuOpen"
+    class="md:hidden absolute top-24 left-4 right-4 bg-white/90 backdrop-blur-xl border border-white/40 shadow-soft-lg rounded-3xl overflow-hidden animate-fade-in-down z-40">
+    <div class="p-2 space-y-1">
       <a routerLink="/admin/dashboard" (click)="toggleMenu()" *ngIf="hasRole('GESTIONNAIRE')"
-         routerLinkActive="text-gray-900 bg-gray-50"
-         class="block px-4 py-3 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-all duration-200">
-         Dashboard
+        routerLinkActive="bg-primary-50 text-primary-700"
+        class="block px-4 py-3 rounded-2xl font-semibold text-neutral-600 hover:bg-neutral-50 transition-colors duration-200">
+        Dashboard
       </a>
-      <a routerLink="/colis" (click)="toggleMenu()" *ngIf="hasRole('GESTIONNAIRE') || hasRole('Livreur')"
-         routerLinkActive="text-gray-900 bg-gray-50"
-         class="block px-4 py-3 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-all duration-200">
-         Colis
+      <a routerLink="/colis" (click)="toggleMenu()" *ngIf="hasRole('GESTIONNAIRE') || hasRole('LIVREUR')"
+        routerLinkActive="bg-primary-50 text-primary-700"
+        class="block px-4 py-3 rounded-2xl font-semibold text-neutral-600 hover:bg-neutral-50 transition-colors duration-200">
+        Tracking
       </a>
       <a routerLink="/clients" (click)="toggleMenu()" *ngIf="hasRole('GESTIONNAIRE')"
-         routerLinkActive="text-gray-900 bg-gray-50"
-         class="block px-4 py-3 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-all duration-200">
-         Clients
+        routerLinkActive="bg-primary-50 text-primary-700"
+        class="block px-4 py-3 rounded-2xl font-semibold text-neutral-600 hover:bg-neutral-50 transition-colors duration-200">
+        Clients
       </a>
-      <div class="border-t border-gray-100 my-3"></div>
+
+      <div class="h-px bg-neutral-100 my-2 mx-4"></div>
+
       <a routerLink="/profile" (click)="toggleMenu()" *ngIf="isLoggedIn()"
-         routerLinkActive="text-gray-900 bg-gray-50"
-         class="block px-4 py-3 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-all duration-200">
-         Profil
+        routerLinkActive="bg-primary-50 text-primary-700"
+        class="block px-4 py-3 rounded-2xl font-semibold text-neutral-600 hover:bg-neutral-50 transition-colors duration-200">
+        Profile
       </a>
       <a routerLink="/auth/login" (click)="toggleMenu()" *ngIf="!isLoggedIn()"
-         class="block px-4 py-3 text-sm font-medium text-center bg-gray-900 text-white rounded-lg">
-         Connexion
+        class="block px-4 py-3 rounded-2xl font-bold bg-neutral-900 text-white text-center shadow-lg mx-2 mt-2">
+        Sign In
       </a>
       <button (click)="logout(); toggleMenu()" *ngIf="isLoggedIn()"
-         class="w-full px-4 py-3 text-sm text-left text-red-600 hover:bg-red-50 rounded-lg transition-all duration-200 flex items-center justify-between">
-         <span>Déconnexion</span>
-         <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-         </svg>
+        class="w-full px-4 py-3 rounded-2xl font-semibold text-secondary-600 hover:bg-secondary-50 transition-colors duration-200 text-left flex items-center justify-between">
+        <span>Logout</span>
+        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+        </svg>
       </button>
     </div>
   </div>
 </nav>
 
-<!-- Spacer avec hauteur ajustée -->
-<div class="h-20"></div>
+<!-- Spacer for floating header -->
+<div class="h-28"></div>

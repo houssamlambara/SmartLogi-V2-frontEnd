@@ -28,6 +28,7 @@ export class NavbarComponent {
   }
 
   hasRole(role: string): boolean {
+    const userRole = this.authService.getUserRole();
     return this.authService.hasRole(role);
   }
 
