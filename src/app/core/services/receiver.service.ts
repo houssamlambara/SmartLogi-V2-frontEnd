@@ -2,7 +2,6 @@ import { inject, Injectable } from '@angular/core';
 import { ApiService } from './api.service';
 import { map, Observable } from 'rxjs';
 import { ReceiverModel } from '../../features/receivers/models/receiver.model';
-import { environment } from '../../environment/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +15,11 @@ export class receviersService {
         return resp.data.content || resp.data;
       })
     );
+  }
+
+  // Alias pour NgRx Effects
+  getAllReceivers(): Observable<ReceiverModel[]> {
+    return this.getReceivers();
   }
 
   createReceiver(receiver: any): Observable<any> {
