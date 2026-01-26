@@ -17,6 +17,11 @@ export class senderService {
     );
   }
 
+  // Alias pour NgRx Effects
+  getAllSenders(): Observable<senderModel[]> {
+    return this.getSenders();
+  }
+
   createSender(sender: any): Observable<any> {
     return this.apiSer.post(`clients`, sender);
   }
