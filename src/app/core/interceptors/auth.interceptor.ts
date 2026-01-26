@@ -1,17 +1,24 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { Store } from '@ngrx/store';
+import { take, switchMap } from 'rxjs/operators';
+import { selectToken } from '../../store/auth/auth.selectors';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
-  const token = localStorage.getItem('jwtToken');
+  const store = inject(Store);
 
-  if (token) {
-    req = req.clone({
-      setHeaders: {
-        Authorization: `Bearer ${token}`
+  return store.select(selectToken).pipe(
+    take(1),
+    switchMap((token) => {
+      if (token) {
+        req = req.clone({
+          setHeaders: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
       }
-    });
-  }
 
-  return next(req);
+      return next(req);
+    })
+  );
 };
