@@ -12,16 +12,10 @@ export class senderService {
   getSenders(): Observable<senderModel[]> {
     return this.apiSer.get<senderModel[]>(`clients`).pipe(
       map((resp: any) => {
-        return resp.data.content || resp.data; // Handle pagination content if wrapped
+        return resp.data.content || resp.data;
       })
     );
   }
-
-  // Alias pour NgRx Effects
-  getAllSenders(): Observable<senderModel[]> {
-    return this.getSenders();
-  }
-
   createSender(sender: any): Observable<any> {
     return this.apiSer.post(`clients`, sender);
   }

@@ -15,11 +15,6 @@ export class livreurService {
     );
   }
 
-  // Alias pour NgRx Effects
-  getAllLivreurs(): Observable<livreurModel[]> {
-    return this.getLivreurs();
-  }
-
   assignLivreur(colisId: string, livreurId: string) {
     return this._apiService.patch(`colis/affect/${colisId}/livreur/${livreurId}`, null).pipe(
       map((resp: any) => {

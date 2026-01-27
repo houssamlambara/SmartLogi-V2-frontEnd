@@ -17,11 +17,6 @@ export class receviersService {
     );
   }
 
-  // Alias pour NgRx Effects
-  getAllReceivers(): Observable<ReceiverModel[]> {
-    return this.getReceivers();
-  }
-
   createReceiver(receiver: any): Observable<any> {
     return this.apiSer.post(`destinations`, receiver);
   }
