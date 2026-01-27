@@ -10,7 +10,7 @@ import { authInterceptor } from './core/interceptors/auth.interceptor';
 import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
-import { reducers, metaReducers, AuthEffects, ColisEffects, LivreursEffects, SendersEffects, ReceiversEffects } from './store';
+import { reducers, metaReducers, AuthEffects, ColisEffects } from './store';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,9 +18,8 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes, withEnabledBlockingInitialNavigation()),
     provideAnimations(),
-    // NgRx Store Configuration
     provideStore(reducers, { metaReducers }),
-    provideEffects([AuthEffects, ColisEffects, LivreursEffects, SendersEffects, ReceiversEffects]),
+    provideEffects([AuthEffects, ColisEffects]),
     provideStoreDevtools({
       maxAge: 25,
       logOnly: !isDevMode(),
