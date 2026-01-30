@@ -9,7 +9,7 @@ import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
   standalone: true,
   imports: [RouterOutlet, SidebarComponent, NgxSonnerToaster, NgxSpinnerModule],
   templateUrl: "./app.html",
-  styleUrl: './app.css'
+
 })
 
 export class App {

@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-register',
   imports: [CommonModule, FormsModule],
   templateUrl: './register.page.html',
-  styleUrl: './register.page.css',
+
 })
 export class Register implements OnInit {
   Nom: string = '';

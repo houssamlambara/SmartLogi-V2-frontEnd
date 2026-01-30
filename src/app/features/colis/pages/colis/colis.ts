@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-colis',
   imports: [Card, RouterLink, FormsModule],
   templateUrl: './colis.html',
-  styleUrl: './colis.css',
+
 })
 
 export class Colis implements OnInit {

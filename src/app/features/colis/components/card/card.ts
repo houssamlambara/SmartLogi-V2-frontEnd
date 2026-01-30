@@ -10,7 +10,7 @@ import { RouterLink } from "@angular/router";
   standalone: true,
   imports: [CommonModule, RouterLink],
   templateUrl: './card.html',
-  styleUrl: './card.css',
+
 })
 
 export class Card {

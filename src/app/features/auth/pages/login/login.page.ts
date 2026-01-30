@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
   imports: [FormsModule, CommonModule, RouterLink],
   standalone: true,
   templateUrl: './login.page.html',
-  styleUrls: ['./login.page.css'],
+
 })
 export class Login {
   email: string = '';

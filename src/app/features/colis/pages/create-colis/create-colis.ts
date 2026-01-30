@@ -27,7 +27,7 @@ import { newSenderModel } from '../../../../core/models/new-sender.model';
   standalone: true,
   imports: [CommonModule, RouterLink, FormsModule],
   templateUrl: './create-colis.html',
-  styleUrl: './create-colis.css',
+
 })
 export class CreateColis implements OnInit {
   private receviersSer = inject(receviersService);

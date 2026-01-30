@@ -19,7 +19,7 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './single-colis.html',
-  styleUrl: './single-colis.css',
+
 })
 export class SingleColis implements OnInit {
   private router = inject(ActivatedRoute);
