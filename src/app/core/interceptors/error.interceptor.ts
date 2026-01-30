@@ -3,8 +3,8 @@ import { inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { catchError, throwError, retry } from 'rxjs';
-import { showError } from '../../store/ui/ui.actions';
-import { showNotification } from '../../store/ui/ui.actions';
+// import { showError } from '../../store/ui/ui.actions';
+// import { showNotification } from '../../store/ui/ui.actions';
 import { logout } from '../../store/auth/auth.actions';
 
 export const errorInterceptor: HttpInterceptorFn = (req, next) => {
@@ -56,15 +56,16 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
         }
       }
 
-      store.dispatch(showError({ error: errorMessage }));
-      store.dispatch(
-        showNotification({
-          notification: {
-            type: 'error',
-            message: errorMessage,
-          },
-        })
-      );
+      // store.dispatch(showError({ error: errorMessage }));
+      // store.dispatch(
+      //   showNotification({
+      //     notification: {
+      //       type: 'error',
+      //       message: errorMessage,
+      //     },
+      //   })
+      // );
+      console.error(errorMessage);
 
       return throwError(() => error);
     })
